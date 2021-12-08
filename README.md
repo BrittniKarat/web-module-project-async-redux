@@ -1,6 +1,6 @@
 # Module Project: Async Redux - React Redux App
 
-This project allows you to practice the concepts and techniques learned in this module and apply them in a concrete project. This module explored asynchronous action creators in Redux. In your project you will demonstrate proficiency of these subjects and principles by building an app from scratch that consumes and API of your choosing, and displays data fetched from that API.
+This project allows you to practice the concepts and techniques learned in this module and apply them in a concrete project. This module explored asynchronous action creators in Redux. In your project you will demonstrate proficiency of these subjects and principles by building an app from scratch that consumes an API of your choosing, and displays data fetched from that API.
 
 ## Introduction
 
@@ -22,9 +22,9 @@ In this project you'll choose an api to consume. You will build an application f
 
 ### Task 1: Project Set Up
 
-- [ ] Create a forked copy of this project.
-- [ ] Start up the app using `npm start`.
-- [ ] Add your code into teh `\src` folder.
+- [x ] Create a forked copy of this project.
+- [x ] Start up the app using `npm start`.
+- [x ] Add your code into teh `\src` folder.
 
 ### Task 2: Minimum Viable Product
 

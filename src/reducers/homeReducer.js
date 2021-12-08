@@ -1,22 +1,37 @@
-import { GET_MONSTER } from "../actions/homeActions";
+import { GET_MONSTER, FETCH_SUCCESS, FETCH_FAIL } from "../actions/homeActions";
 
 export const initialState = {
+   monster: {
     name: 'Kindly Ghost',
     size: 'Tiny',
     armor_class: 0,
     hit_points: 0
+    },
+    isFetching: false,
+    error: ''
 }
 
  const reducer = ( state = initialState, action ) => {
     switch(action.type){
         case GET_MONSTER:
-            return {
+            return ({
                 ...state,
-                name: state.name,
-                size: state.size,
-                armor_class: state.armor_class,
-                hit_points: state.hit_points
-            }
+                monster: action.payload,
+                isFetching: true
+            })
+        case FETCH_SUCCESS:
+            return ({
+                ...state,
+                monster: action.payload,
+                isFetching: false
+            })
+        case FETCH_FAIL:
+            return ({
+                ...state,
+                monster: {},
+                isFetching: false,
+                error: action.payload                
+            })
         default:
             return state;
     }

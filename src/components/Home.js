@@ -8,29 +8,28 @@ import axios from 'axios';
 
 const Home = (props) => {
     const [state, dispatch] = useReducer(reducer, initialState);
-    const { monster, isFetching, error, fetchSuccess, fetchFail } = props;
+    const { monster, isFetching, error } = props;
 
     if(error) {
-       return <h2> The monster has declined the invitation to join your adventure. </h2>;
+       return <h2> The monster has declined the invitation to join your adventure. Strange symbols appear:  {error} </h2>;
     }
 
     if(isFetching) {
-       return <h2> With your perception, you see something coming towards you. What's that?! It looks like a lone... </h2>
+       return <h2> What's that?! It looks like a lone... </h2>
     }
-
-    console.log(monster)
-
     
-
     const handleClick = () => {
         props.getMonster();
         const pageNumber = Math.ceil(Math.random() * 22);
         const randMonster = Math.ceil(Math.random() * 50);
         axios.get(`https://api.open5e.com/monsters/?page=${pageNumber}`)
-            .then(res => 
-            props.fetchSuccess(res.data.results[randMonster])
+            .then(res => { 
+                 props.fetchSuccess(res.data.results[randMonster]
+                    )}
             )
-            .catch(err => console.error(err))
+            .catch(err => {
+                props.fetchFail(err)
+            })
     }
 
     // console.log(res.data.results[randMonster]),
@@ -38,13 +37,14 @@ const Home = (props) => {
     return (
         <div>
             <h1> Random Encounter </h1>
-            <button onClick={handleClick}> Get a monster </button>
+            <button onClick={handleClick}> New monster </button>
             <div> 
                 <h3> {monster.name} </h3>
+                <h4> Type: {monster.type}</h4>
                 <h4> Stats: </h4>
-                <h4> {monster.size} </h4>
-                <h4> {monster.armor_class} </h4>
-                <h4> {monster.hit_points} </h4>
+                <h5> Size: {monster.size} </h5>
+                <h5> Armor Class: {monster.armor_class} </h5>
+                <h5> Hit points: {monster.hit_points} </h5>
             </div>
         </div>
     )
@@ -52,7 +52,7 @@ const Home = (props) => {
 
 const mapStateToProps = (state) => {
     return ({
-        person: state.monster,  
+        monster: state.monster,  
         isFetching: state.isFetching,
         error: state.error  
     })

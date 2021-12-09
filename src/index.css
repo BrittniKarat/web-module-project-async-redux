@@ -2,10 +2,15 @@
 body {
 	background: #f5f5f5;
 	max-width: 100%;
+	background-image: url(../photos/forest.jpeg);
+	background-repeat: no-repeat;
+	background-size: cover;
+	text-shadow: #b5c99a 2px 2px 2px;
+	color: #55a630 ;
 }
 
 h1{
-	font-size: 3rem;
+	font-size: 5rem;
 	font-weight: bold;
 	margin: 3% 0;
 }

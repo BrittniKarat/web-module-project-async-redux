@@ -2,7 +2,6 @@ import React, {  useEffect, useReducer } from 'react';
 import reducer, { initialState } from '../reducers/homeReducer.js';
 import { aquireMonster } from '../actions/homeActions.js';
 import { connect } from 'react-redux';
-import axios from 'axios';
 
 
 const Home = (props) => {
@@ -13,6 +12,10 @@ const Home = (props) => {
         props.aquireMonster();
     }, [])
 
+    const handleClick = () => {
+        props.aquireMonster();
+    }
+
     if(error) {
        return <h2> The monster has declined the invitation to join your adventure. Strange symbols appear:  {error} </h2>;
     }
@@ -21,10 +24,6 @@ const Home = (props) => {
        return <h2> What's that?! It looks like a lone... </h2>
     }
     
-    const handleClick = () => {
-        props.aquireMonster();
-    }
-
     return (
         <div>
             <h1> Random Encounter </h1>

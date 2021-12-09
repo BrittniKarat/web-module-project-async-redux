@@ -7,7 +7,7 @@ export const aquireMonster = () => {
     return (dispatch) => {
         dispatch({type: GET_MONSTER});
         const pageNumber = Math.ceil(Math.random() * 22);
-        const randMonster = Math.ceil(Math.random() * 50);
+        const randMonster = Math.floor(Math.random() * 50);
         axios.get(`https://api.open5e.com/monsters/?page=${pageNumber}`)
             .then(res => { 
                 dispatch({type: FETCH_SUCCESS, payload: res.data.results[randMonster]})

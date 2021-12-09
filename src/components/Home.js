@@ -1,7 +1,6 @@
-import App from '../App.js';
-import React, {  useReducer } from 'react';
+import React, {  useEffect, useReducer } from 'react';
 import reducer, { initialState } from '../reducers/homeReducer.js';
-import { getMonster, fetchSuccess, fetchFail } from '../actions/homeActions.js';
+import { aquireMonster } from '../actions/homeActions.js';
 import { connect } from 'react-redux';
 import axios from 'axios';
 
@@ -9,6 +8,10 @@ import axios from 'axios';
 const Home = (props) => {
     const [state, dispatch] = useReducer(reducer, initialState);
     const { monster, isFetching, error } = props;
+
+    useEffect(() => {
+        props.aquireMonster();
+    }, [])
 
     if(error) {
        return <h2> The monster has declined the invitation to join your adventure. Strange symbols appear:  {error} </h2>;
@@ -19,20 +22,8 @@ const Home = (props) => {
     }
     
     const handleClick = () => {
-        props.getMonster();
-        const pageNumber = Math.ceil(Math.random() * 22);
-        const randMonster = Math.ceil(Math.random() * 50);
-        axios.get(`https://api.open5e.com/monsters/?page=${pageNumber}`)
-            .then(res => { 
-                 props.fetchSuccess(res.data.results[randMonster]
-                    )}
-            )
-            .catch(err => {
-                props.fetchFail(err)
-            })
+        props.aquireMonster();
     }
-
-    // console.log(res.data.results[randMonster]),
 
     return (
         <div>
@@ -58,4 +49,4 @@ const mapStateToProps = (state) => {
     })
 };
 
-export default connect(mapStateToProps, { getMonster, fetchSuccess, fetchFail })(Home);
+export default connect(mapStateToProps, { aquireMonster })(Home);

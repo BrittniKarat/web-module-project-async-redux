@@ -1,12 +1,7 @@
 import { GET_MONSTER, FETCH_SUCCESS, FETCH_FAIL } from "../actions/homeActions";
 
 export const initialState = {
-   monster: {
-    name: 'Kindly Ghost',
-    size: 'Tiny',
-    armor_class: 0,
-    hit_points: 0
-    },
+   monster: {},
     isFetching: false,
     error: ''
 }
@@ -28,7 +23,6 @@ export const initialState = {
         case FETCH_FAIL:
             return ({
                 ...state,
-                monster: {},
                 isFetching: false,
                 error: action.payload                
             })

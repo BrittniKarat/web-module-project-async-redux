@@ -11,7 +11,7 @@ const Home = (props) => {
     useEffect(() => {
         props.aquireMonster();
     }, [])
-// this handles clicks
+
     const handleClick = () => {
         props.aquireMonster();
     }
